@@ -10,7 +10,7 @@ function createTreeCell() {
 
         // let totalLevels = floor(random(3, 5));
         // let branchCount = floor(random(2, 4));
-        let totalLevels = 4;
+        let totalLevels = 3;
         let branchCount = 2;
         //看好在哪个physics里面
         let tree = new Tree(x, y, random(70, 120), branchCount, physics, totalLevels);

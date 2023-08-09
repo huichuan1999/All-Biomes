@@ -17,7 +17,7 @@ class Branch {
   }
 
   show() {
-    stroke(255);
+    stroke(255,150);
     //let sw = 4 / log(this.level + 2);
     //strokeWeight(sw);
     //strokeWeight(map(this.level, totalLevels, 0, 8, 1));

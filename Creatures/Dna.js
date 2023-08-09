@@ -1,9 +1,10 @@
 class DNA {
-    constructor(x, y, length, distance, physics) {
+    constructor(x, y, length, distance, tailPhysics) {
         this.particles = [];
         this.springs = [];
         this.length = length;
         this.distance = distance;  // 新增的距离属性
+        this.physics = tailPhysics;
 
         for (let i = 0; i < this.length; i++) {
             let particleA = new toxi.physics2d.VerletParticle2D(x, y + i * this.distance);
@@ -19,10 +20,10 @@ class DNA {
                 let crossSpring = new toxi.physics2d.VerletSpring2D(this.particles[(i - 1) * 2], particleB, crossSpringDistance, 0.01);
                 let crossSpring2 = new toxi.physics2d.VerletSpring2D(this.particles[(i - 1) * 2 + 1], particleA, crossSpringDistance, 0.01);
 
-                physics.addSpring(springA);
-                physics.addSpring(springB);
-                physics.addSpring(crossSpring);
-                physics.addSpring(crossSpring2);
+                this.physics.addSpring(springA);
+                this.physics.addSpring(springB);
+                this.physics.addSpring(crossSpring);
+                this.physics.addSpring(crossSpring2);
                 this.springs.push(springA, springB, crossSpring, crossSpring2);
             }
         }
@@ -30,8 +31,8 @@ class DNA {
 
     display() {
         for (let i = 0; i < this.particles.length; i++) {
-            fill(255, 150);
-            stroke(255);
+            fill(255, 80);
+            stroke(255,150);
             strokeWeight(1);
             if (i < 2 || i > this.particles.length - 3) {
                 ellipse(this.particles[i].x, this.particles[i].y, 15);
@@ -40,9 +41,9 @@ class DNA {
             }
         }
 
-        for (let i = 0; i < this.springs.length; i++) {
-            stroke(255,100);
-            line(this.springs[i].a.x, this.springs[i].a.y, this.springs[i].b.x, this.springs[i].b.y);
-        }
+        // for (let i = 0; i < this.springs.length; i++) {
+        //     stroke(255,100);
+        //     line(this.springs[i].a.x, this.springs[i].a.y, this.springs[i].b.x, this.springs[i].b.y);
+        // }
     }
 }
