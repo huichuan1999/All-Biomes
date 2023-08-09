@@ -178,7 +178,7 @@ function drawHand(){
 }
 
 function windowResized() {
-  resizeCanvas(window.innerWidth, window.innerHeight);
+  resizeCanvas(window.innerWidth, window.innerWidth/4);
 }
 
 function keyPressed() {
