@@ -1,8 +1,6 @@
 let physics;
 let tailPhysics;
-let stars = [];
-let angStars = [];
-let numStars = 3;
+
 let particleGrabRadius = 30;
 
 let handParticles = [];
@@ -26,9 +24,9 @@ function setup() {
   //physics.setDrag(0.001);
 
   tailPhysics = new VerletPhysics2D();
-  tailPhysics.setWorldBounds(new Rect(0, 0, width, height));
-  let gb = new GravityBehavior(new Vec2D(0, 0.1));// add gravity to tails
-  tailPhysics.addBehavior(gb);
+  //tailPhysics.setWorldBounds(new Rect(0, 0, width, height));
+  // let gb = new GravityBehavior(new Vec2D(0, 0.1));// add gravity to tails
+  // tailPhysics.addBehavior(gb);
   tailPhysics.setDrag(0.1);
 
   attraction = new AttractionBehavior(new Vec2D(0, 0), 500, 0.5, 0.2);//整体的环境吸引力
@@ -70,6 +68,34 @@ function draw() {
     }
   }
 
+    //If detected hand
+    const allLandmarkIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+    const allLandmarkCoordinates = getLandmarkCoordinates(allLandmarkIndices, detections);
+    for (let i = 0; i < handParticles.length; i++) {
+      const index = allLandmarkIndices[i];
+      if (index == 8 || index == 4) {
+        continue; // // Skip keys with index 8 (index finger) or 4 (thumb)
+      }
+      const coord = allLandmarkCoordinates[index];
+      if (coord) {
+        handParticles[i].updatePosition(coord.x, coord.y);
+      }
+    }
+  
+    if (handParticles.length === 0) {
+      addHandParticle(allLandmarkCoordinates);
+    }
+  
+    //添加手部粒子对物理系统中粒子的影响
+    for (let i = 0; i < handParticles.length; i++) {
+      if (tailPhysics.behaviors.length < tailPhysics.particles.length + 19) {
+        handAttractions[i].attractor.set(handParticles[i].getPosition());
+        tailPhysics.addBehavior(handAttractions[i]);
+      } else {
+        handAttractions[i].attractor.set(handParticles[i].getPosition());
+      }
+    }
+    
   drawStars();
   drawTreeCell();
 

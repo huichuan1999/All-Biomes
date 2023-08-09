@@ -19,7 +19,7 @@ html, body {
 #video {
   position: absolute;
   transform: rotateY(180deg);
-  filter: grayscale(100%) invert(20%);
+  filter: grayscale(100%) ;
   top: 0;
   left: 0;
   width: 100vw;
@@ -28,7 +28,7 @@ html, body {
 }
 
 .overlay{
-  background-color: rgba(0,0,0,0.5);
+  background-color: rgba(0,0,0,0.7);
   /* background-color: #000; */
   position:absolute;
   top:0;

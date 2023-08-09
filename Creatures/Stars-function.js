@@ -1,3 +1,7 @@
+let stars = [];
+let angStars = [];
+let numStars = 3;
+
 function createStars() {
     for (let i = 0; i < numStars; i++) {
         let centerX = random(width / 6, width - width / 6);
@@ -15,34 +19,6 @@ function drawStars(){
     star.draw();
   }
 
-  
-  //If detected hand
-  const allLandmarkIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-  const allLandmarkCoordinates = getLandmarkCoordinates(allLandmarkIndices, detections);
-  for (let i = 0; i < handParticles.length; i++) {
-    const index = allLandmarkIndices[i];
-    if (index == 8 || index == 4) {
-      continue; // // Skip keys with index 8 (index finger) or 4 (thumb)
-    }
-    const coord = allLandmarkCoordinates[index];
-    if (coord) {
-      handParticles[i].updatePosition(coord.x, coord.y);
-    }
-  }
-
-  if (handParticles.length === 0) {
-    addHandParticle(allLandmarkCoordinates);
-  }
-
-  //添加手部粒子对物理系统中粒子的影响
-  for (let i = 0; i < handParticles.length; i++) {
-    if (tailPhysics.behaviors.length < 19) {
-      handAttractions[i].attractor.set(handParticles[i].getPosition());
-      tailPhysics.addBehavior(handAttractions[i]);
-    } else {
-      handAttractions[i].attractor.set(handParticles[i].getPosition());
-    }
-  }
   // console.log(physics.behaviors, physics);
 
   //Add pinch interaction
