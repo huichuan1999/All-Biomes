@@ -30,7 +30,7 @@ class DNA {
 
     display() {
         for (let i = 0; i < this.particles.length; i++) {
-            fill(255, 100);
+            fill(255, 150);
             stroke(255);
             strokeWeight(1);
             if (i < 2 || i > this.particles.length - 3) {
@@ -41,6 +41,7 @@ class DNA {
         }
 
         for (let i = 0; i < this.springs.length; i++) {
+            stroke(255,100);
             line(this.springs[i].a.x, this.springs[i].a.y, this.springs[i].b.x, this.springs[i].b.y);
         }
     }

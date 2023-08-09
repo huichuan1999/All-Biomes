@@ -13,34 +13,34 @@ function drawDNA() {
     }
 }
 
-function DNAJump() {
-    //需要在pinch Interaction里面使用
-    for (let dna of dnas) {
-        for (let i = 0; i < 2; i++) {
-            let d = dist(midpoint.x, midpoint.y, dna.particles[i].x, dna.particles[i].y);
+// function DNAJump() {
+//     //需要在pinch Interaction里面使用
+//     for (let dna of dnas) {
+//         for (let i = 0; i < 2; i++) {
+//             let d = dist(midpoint.x, midpoint.y, dna.particles[i].x, dna.particles[i].y);
 
-            if (d < 20) {
-                dna.particles[i].set(width / 2, height / 2);
-            }
-        } //只探测最开始的粒子
+//             if (d < 20) {
+//                 dna.particles[i].set(width / 2, height / 2);
+//             }
+//         } //只探测最开始的粒子
 
-        for (let i = dna.particles.length - 2; i < dna.particles.length; i++) {
-            let d = dist(midpoint.x, midpoint.y, dna.particles[i].x, dna.particles[i].y);
+//         for (let i = dna.particles.length - 2; i < dna.particles.length; i++) {
+//             let d = dist(midpoint.x, midpoint.y, dna.particles[i].x, dna.particles[i].y);
 
-            if (d < 20) {
-                dna.particles[i].set(random(width), random(height));
-            }
-        }
+//             if (d < 20) {
+//                 dna.particles[i].set(random(width), random(height));
+//             }
+//         }
 
-        //只探测倒数两个的粒子
-        //   for(let i = 0; i < dna.particles.length; i++) { 
-        //   let d = dist(midpoint.x, midpoint.y, dna.particles[i].x, dna.particles[i].y);
-        //   if (d < particleGrabRadius) {
-        //     dna.particles[i].lock();
-        //     dna.particles[i].x = midpoint.x;
-        //     dna.particles[i].y = midpoint.y;
-        //     dna.particles[i].unlock();
-        //   }
-        // }
-    }
-}
+//         //只探测倒数两个的粒子
+//         //   for(let i = 0; i < dna.particles.length; i++) { 
+//         //   let d = dist(midpoint.x, midpoint.y, dna.particles[i].x, dna.particles[i].y);
+//         //   if (d < particleGrabRadius) {
+//         //     dna.particles[i].lock();
+//         //     dna.particles[i].x = midpoint.x;
+//         //     dna.particles[i].y = midpoint.y;
+//         //     dna.particles[i].unlock();
+//         //   }
+//         // }
+//     }
+// }
