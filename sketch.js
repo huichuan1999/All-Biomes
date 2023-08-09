@@ -26,7 +26,7 @@ function setup() {
   tailPhysics.setWorldBounds(new Rect(0, 0, width, height));
   // let gb = new GravityBehavior(new Vec2D(0, 0.1));// add gravity to tails
   // tailPhysics.addBehavior(gb);
-  tailPhysics.setDrag(0.01);
+  tailPhysics.setDrag(0.1);
 
   attraction = new AttractionBehavior(new Vec2D(0, 0), 500, 0.5, 0.2);//整体的环境吸引力
   physics.addBehavior(attraction);
@@ -35,6 +35,7 @@ function setup() {
 
   createStars();
   createTreeCell();
+  createDNA();
 
 }
 
@@ -54,6 +55,7 @@ function draw() {
 
   drawStars();
   drawTreeCell();
+  drawDNA();
 
 }
 
@@ -112,6 +114,24 @@ function pinchInteraction() {
       // 更新吸引行为的中心
       attraction.setAttractor(new Vec2D(midpoint.x, midpoint.y));
       attraction.setStrength(0.1);
+
+      for (let dna of dnas) {
+        for (let i = 0; i < 2; i++) {
+            let d = dist(midpoint.x, midpoint.y, dna.particles[i].x, dna.particles[i].y);
+
+            if (d < 20) {
+                dna.particles[i].set(width / 2, height / 2);
+            }
+        } //只探测最开始的粒子
+
+        for (let i = dna.particles.length - 2; i < dna.particles.length; i++) {
+            let d = dist(midpoint.x, midpoint.y, dna.particles[i].x, dna.particles[i].y);
+
+            if (d < 20) {
+                dna.particles[i].set(random(midpoint.x-100,midpoint.x+100), random(midpoint.y-100,midpoint.y+100));
+            }
+        }
+      }
       //捏合交互
       // for (let star of stars) {
       //   //for (let point of star.points) { 

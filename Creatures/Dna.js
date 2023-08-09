@@ -1,21 +1,23 @@
 class DNA {
-    constructor(x, y, length, physics) {
+    constructor(x, y, length, distance, physics) {
         this.particles = [];
         this.springs = [];
         this.length = length;
+        this.distance = distance;  // 新增的距离属性
 
         for (let i = 0; i < this.length; i++) {
-            let particleA = new toxi.physics2d.VerletParticle2D(x, y + i * 40);
-            let particleB = new toxi.physics2d.VerletParticle2D(x + 40, y + i * 40);
+            let particleA = new toxi.physics2d.VerletParticle2D(x, y + i * this.distance);
+            let particleB = new toxi.physics2d.VerletParticle2D(x + this.distance, y + i * this.distance);
             physics.addParticle(particleA);
             physics.addParticle(particleB);
             this.particles.push(particleA, particleB);
 
             if (i > 0) {
-                let springA = new toxi.physics2d.VerletSpring2D(this.particles[(i - 1) * 2], particleA, 40, 0.01);
-                let springB = new toxi.physics2d.VerletSpring2D(this.particles[(i - 1) * 2 + 1], particleB, 40, 0.01);
-                let crossSpring = new toxi.physics2d.VerletSpring2D(this.particles[(i - 1) * 2], particleB, 56.57, 0.01);
-                let crossSpring2 = new toxi.physics2d.VerletSpring2D(this.particles[(i - 1) * 2 + 1], particleA, 56.57, 0.01);
+                let springA = new toxi.physics2d.VerletSpring2D(this.particles[(i - 1) * 2], particleA, this.distance, 0.01);
+                let springB = new toxi.physics2d.VerletSpring2D(this.particles[(i - 1) * 2 + 1], particleB, this.distance, 0.01);
+                let crossSpringDistance = Math.sqrt(this.distance * this.distance * 2);  // 使用Pythagoras计算斜边距离
+                let crossSpring = new toxi.physics2d.VerletSpring2D(this.particles[(i - 1) * 2], particleB, crossSpringDistance, 0.01);
+                let crossSpring2 = new toxi.physics2d.VerletSpring2D(this.particles[(i - 1) * 2 + 1], particleA, crossSpringDistance, 0.01);
 
                 physics.addSpring(springA);
                 physics.addSpring(springB);
@@ -32,9 +34,9 @@ class DNA {
             stroke(255);
             strokeWeight(1);
             if (i < 2 || i > this.particles.length - 3) {
-                ellipse(this.particles[i].x, this.particles[i].y, 20);
+                ellipse(this.particles[i].x, this.particles[i].y, 15);
             } else {
-                ellipse(this.particles[i].x, this.particles[i].y, 10);
+                ellipse(this.particles[i].x, this.particles[i].y, 7);
             }
         }
 

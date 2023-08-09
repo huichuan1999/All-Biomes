@@ -31,7 +31,7 @@ class Star {
 
         // Create a ParticleString for each inner point//加上尾巴
         const stepDirection = new toxi.geom.Vec2D(0, 1).normalizeTo(20);
-        let numParticles = random(4,15);
+        let numParticles = random(4, 15);
         let strength = 1;
         let damping = 0.1;
         let particleString = new ParticleString(tailPhysics, innerPoint, stepDirection, numParticles, strength, damping);
@@ -67,13 +67,13 @@ class Star {
     physics.addSpring(extraSpring);
 
     //添加额外的支撑弹簧
-    for (let i = 0; i < points-1; i++) {
-      for (let offset = 2; offset <= points/2; offset++) {
+    for (let i = 0; i < points - 1; i++) {
+      for (let offset = 2; offset <= points / 2; offset++) {
         const j = (i + offset) % points;
-  
-        if (this.points[2*i] && this.points[2*j]) {
-          const distance = this.points[2*i].distanceTo(this.points[2*j]);
-          const spring = new VerletSpring2D(this.points[2*i], this.points[2*j], distance, 0.1);
+
+        if (this.points[2 * i] && this.points[2 * j]) {
+          const distance = this.points[2 * i].distanceTo(this.points[2 * j]);
+          const spring = new VerletSpring2D(this.points[2 * i], this.points[2 * j], distance, 0.1);
           physics.addSpring(spring);
         }
       }
@@ -90,7 +90,7 @@ class Star {
   }
 
   draw() {
-    
+
     // Draw springs
     strokeWeight(1);
     stroke(180, 50); // Set the color to gray
