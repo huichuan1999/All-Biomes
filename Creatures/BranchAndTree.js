@@ -1,29 +1,32 @@
 class Branch {
-  constructor(begin, end, level, totalLevels) {
+  constructor(begin, end, level, totalLevels, physics) {
     this.level = level;
     this.begin = begin;
     this.totalLevels = totalLevels;
     this.end = end;
+    this.physics = physics;
     let d = dist(this.end.x, this.end.y, this.begin.x, this.begin.y);
 
-    let repulsion = new AttractionBehavior(this.end, d, -0.5);
-    physics.addBehavior(repulsion);
+    let repulsion = new AttractionBehavior(this.end, d, -0.7);
+    this.physics.addBehavior(repulsion);
 
-    let spring = new VerletSpring2D(this.begin, this.end, d, 0.01);
-    physics.addSpring(spring);
+    let spring = new VerletSpring2D(this.begin, this.end, d, 0.1);
+    this.physics.addSpring(spring);
     this.finished = false;
+
   }
 
   show() {
-    stroke(255,150);
+    stroke(255);
     //let sw = 4 / log(this.level + 2);
     //strokeWeight(sw);
     //strokeWeight(map(this.level, totalLevels, 0, 8, 1));
-    let sw = map(this.level, this.totalLevels, 0, 8, 1);
-    strokeWeight(sw);
+    let sw = map(this.level, this.totalLevels, 0, 5, 1);
+    //strokeWeight(sw);
+    strokeWeight(1);
     //console.log(`level: ${this.level}, strokeWeight: ${sw}`);
-    line(this.begin.x, this.begin.y, this.end.x, this.end.y);
-    circle(this.end.x, this.end.y,sw*2);
+    //line(this.begin.x, this.begin.y, this.end.x, this.end.y);
+    circle(this.end.x, this.end.y,sw * 5);
   }
 
   branchA() {
@@ -31,8 +34,8 @@ class Branch {
     dir.rotate(PI / random(1,6));
     dir.scaleSelf(0.67);
     let newEnd = new VerletParticle2D(this.end.add(dir));
-    physics.addParticle(newEnd);
-    let b = new Branch(this.end, newEnd, this.level + 1, this.totalLevels);
+    this.physics.addParticle(newEnd);
+    let b = new Branch(this.end, newEnd, this.level + 1, this.totalLevels, this.physics);
     return b;
   }
 
@@ -41,8 +44,8 @@ class Branch {
     dir.rotate(-PI / random(1,4));
     dir.scaleSelf(0.67);
     let newEnd = new VerletParticle2D(this.end.add(dir));
-    physics.addParticle(newEnd);
-    let b = new Branch(this.end, newEnd, this.level + 1, this.totalLevels);
+    this.physics.addParticle(newEnd);
+    let b = new Branch(this.end, newEnd, this.level + 1, this.totalLevels, this.physics);
     return b;
   }
 }
@@ -70,7 +73,12 @@ class Tree {
             let angle = angleStep * i;
             let b = new VerletParticle2D(rootParticle.x + cos(angle) * branchLength, rootParticle.y + sin(angle) * branchLength);
             this.physics.addParticle(b);
-            let rootBranch = new Branch(rootParticle, b, 0, this.levels);
+
+            //锁住第二层级粒子
+            b.lock();
+
+            //看好处于哪个物理系统！
+            let rootBranch = new Branch(rootParticle, b, 0, this.levels, this.physics);
             this.tree.push(rootBranch);
         }
 
@@ -93,9 +101,5 @@ class Tree {
         }
     }
 
-    lockRoot(x, y) {
-        this.tree[0].begin.x = x;
-        this.tree[0].begin.y = y;
-    }
 }
 

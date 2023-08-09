@@ -24,11 +24,11 @@ class ParticleString {
     stroke(255, 160);
     noFill();
 
-    beginShape();
-    for (const particle of this.particles) {
-      vertex(particle.x, particle.y);
-    }
-    endShape();
+    // beginShape();
+    // for (const particle of this.particles) {
+    //   vertex(particle.x, particle.y);
+    // }
+    // endShape();
 
     fill(255,50);
     for (const particle of this.particles) {

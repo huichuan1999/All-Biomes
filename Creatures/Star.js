@@ -29,7 +29,7 @@ class Star {
         this.points.push(innerPoint);
         physics.addParticle(this.points[this.points.length - 1]);
 
-        // Create a ParticleString for each inner point
+        // Create a ParticleString for each inner point//加上尾巴
         const stepDirection = new toxi.geom.Vec2D(0, 1).normalizeTo(20);
         let numParticles = random(4,15);
         let strength = 1;
@@ -87,7 +87,7 @@ class Star {
 
     fill(255, 100);
     stroke(255);
-    beginShape();
+    beginShape();// draw stars
     for (let p of this.points) {
       circle(p.x, p.y, 10);
       vertex(p.x, p.y);
