@@ -7,7 +7,9 @@ function createStars() {
         let centerX = random(width / 6, width - width / 6);
         let centerY = random(height / 6, height - height / 6);
         angStars.push(random(3, 7));
-        let star = new Star(centerX, centerY, angStars[i], random(10, 20), random(30, 50));
+        let innerRadius = random(10,20);
+        let outerRadius = innerRadius+random(10,30);
+        let star = new Star(centerX, centerY, angStars[i], innerRadius, outerRadius);
         stars.push(star);
     }
 }

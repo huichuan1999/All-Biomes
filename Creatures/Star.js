@@ -67,7 +67,7 @@ class Star {
     physics.addSpring(extraSpring);
 
     //添加额外的支撑弹簧
-    for (let i = 0; i < points+2; i++) {
+    for (let i = 0; i < points-1; i++) {
       for (let offset = 2; offset <= points/2; offset++) {
         const j = (i + offset) % points;
   
@@ -92,8 +92,8 @@ class Star {
   draw() {
     
     // Draw springs
-    stroke(255, 50); // Set the color to gray
     strokeWeight(1);
+    stroke(180, 50); // Set the color to gray
     for (let i = 0; i < physics.springs.length; i++) {
       let spring = physics.springs[i];
       line(spring.a.x, spring.a.y, spring.b.x, spring.b.y);
