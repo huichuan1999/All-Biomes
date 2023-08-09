@@ -177,9 +177,9 @@ function drawHand(){
     }
 }
 
-// function windowResized() {
-//   resizeCanvas(window.innerWidth, window.innerHeight);
-// }
+function windowResized() {
+  resizeCanvas(window.innerWidth, window.innerHeight);
+}
 
 function keyPressed() {
   //press the space to reload

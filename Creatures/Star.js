@@ -65,6 +65,20 @@ class Star {
     // Add an extra spring to connect the last point with the first one
     let extraSpring = new VerletSpring2D(this.points[this.points.length - 1], this.points[0], this.points[this.points.length - 1].distanceTo(this.points[0]), 0.01);
     physics.addSpring(extraSpring);
+
+    //添加额外的支撑弹簧
+    for (let i = 0; i < points+2; i++) {
+      for (let offset = 2; offset <= points/2; offset++) {
+        const j = (i + offset) % points;
+  
+        if (this.points[2*i] && this.points[2*j]) {
+          const distance = this.points[2*i].distanceTo(this.points[2*j]);
+          const spring = new VerletSpring2D(this.points[2*i], this.points[2*j], distance, 0.1);
+          physics.addSpring(spring);
+        }
+      }
+    }
+
   }
 
   updateParticleStrings() {
