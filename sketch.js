@@ -13,7 +13,7 @@ let attraction;
 
 function setup() {
   let canvasWidth = Math.min(windowWidth, 2400);//动态设置画布宽度
-  let canvasHeight = canvasWidth/4; // 对应的高度
+  let canvasHeight = canvasWidth / 4; // 对应的高度
   canvas = createCanvas(canvasWidth, canvasHeight);
   //canvas = createCanvas(2400,600);
   canvas.id("canvas");
@@ -45,7 +45,7 @@ function draw() {
   rect(0, 0, width, height);
   physics.update();
   tailPhysics.update();
-  
+
 
   drawHand();
 
@@ -57,41 +57,41 @@ function draw() {
 
 }
 
-function handDetected(){
+function handDetected() {
 
-    //If detected hand
-    const allLandmarkIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
-    const allLandmarkCoordinates = getLandmarkCoordinates(allLandmarkIndices, detections);
+  //If detected hand
+  const allLandmarkIndices = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20];
+  const allLandmarkCoordinates = getLandmarkCoordinates(allLandmarkIndices, detections);
 
-    if (handParticles.length === 0) {
-      addHandParticle(allLandmarkCoordinates);
+  if (handParticles.length === 0) {
+    addHandParticle(allLandmarkCoordinates);
+  }
+
+  //添加手部粒子对物理系统中粒子的影响
+  for (let i = 0; i < handParticles.length; i++) {
+    const index = allLandmarkIndices[i];
+    if (index == 8 || index == 4) {
+      continue; // // Skip keys with index 8 (index finger) or 4 (thumb)
     }
-    
-    //添加手部粒子对物理系统中粒子的影响
-    for (let i = 0; i < handParticles.length; i++) {
-      const index = allLandmarkIndices[i];
-      if (index == 8 || index == 4) {
-        continue; // // Skip keys with index 8 (index finger) or 4 (thumb)
-      }
-      const coord = allLandmarkCoordinates[index];
-      if (coord) {
-        handParticles[i].updatePosition(coord.x, coord.y);
-      }
-      
-      //适用于tailphysics 的交互
-      if (tailPhysics.behaviors.length < tailPhysics.particles.length + 19) {
-        handAttractions[i].attractor.set(handParticles[i].getPosition());
-        tailPhysics.addBehavior(handAttractions[i]);
-      } else {
-        handAttractions[i].attractor.set(handParticles[i].getPosition());
-      }
+    const coord = allLandmarkCoordinates[index];
+    if (coord) {
+      handParticles[i].updatePosition(coord.x, coord.y);
     }
-  
-    //console.log(tailPhysics.particles.length,tailPhysics.behaviors, tailPhysics);
-  
+
+    //适用于tailphysics 的交互
+    if (tailPhysics.behaviors.length < tailPhysics.particles.length + 19) {
+      handAttractions[i].attractor.set(handParticles[i].getPosition());
+      tailPhysics.addBehavior(handAttractions[i]);
+    } else {
+      handAttractions[i].attractor.set(handParticles[i].getPosition());
+    }
+  }
+
+  //console.log(tailPhysics.particles.length,tailPhysics.behaviors, tailPhysics);
+
 }
 
-function pinchInteraction(){
+function pinchInteraction() {
   //Add pinch interaction
   const landmarkIndices = [8, 4];
   const landmarkCoordinates = getLandmarkCoordinates(landmarkIndices, detections);
@@ -132,7 +132,7 @@ function pinchInteraction(){
       draggedParticle = null;
       attraction.setStrength(0); //将吸引行为设置为0
     }
-  }else{
+  } else {
     attraction.setStrength(0);
   }
 }
@@ -151,34 +151,34 @@ function removeHandParticles() {
   handAttractions = [];
 }
 
-function drawHand(){
-    //draw hand landmarks
-    if (detections != undefined) {
-      if (detections.multiHandLandmarks != undefined) {
+function drawHand() {
+  //draw hand landmarks
+  if (detections != undefined) {
+    if (detections.multiHandLandmarks != undefined) {
 
-        //console.log(detections);
-  
-        //draw landmarks 
-        drawLines([0, 5, 9, 13, 17, 0]);//palm
-        drawLines([0, 1, 2, 3, 4]);//thumb
-        drawLines([5, 6, 7, 8]);//index finger
-        drawLines([9, 10, 11, 12]);//middle finger
-        drawLines([13, 14, 15, 16]);//ring finger
-        drawLines([17, 18, 19, 20]);//pinky
-  
-        drawLandmarks([0, 1], 0);//palm base
-        drawLandmarks([1, 5], 60);//thumb
-        drawLandmarks([5, 9], 120);//index finger
-        drawLandmarks([9, 13], 180);//middle finger
-        drawLandmarks([13, 17], 240);//ring finger
-        drawLandmarks([17, 21], 300);//pinky
+      //console.log(detections);
 
-      }
+      //draw landmarks 
+      drawLines([0, 5, 9, 13, 17, 0]);//palm
+      drawLines([0, 1, 2, 3, 4]);//thumb
+      drawLines([5, 6, 7, 8]);//index finger
+      drawLines([9, 10, 11, 12]);//middle finger
+      drawLines([13, 14, 15, 16]);//ring finger
+      drawLines([17, 18, 19, 20]);//pinky
+
+      drawLandmarks([0, 1], 0);//palm base
+      drawLandmarks([1, 5], 60);//thumb
+      drawLandmarks([5, 9], 120);//index finger
+      drawLandmarks([9, 13], 180);//middle finger
+      drawLandmarks([13, 17], 240);//ring finger
+      drawLandmarks([17, 21], 300);//pinky
+
     }
+  }
 }
 
 function windowResized() {
-  resizeCanvas(window.innerWidth, window.innerWidth/4);
+  resizeCanvas(window.innerWidth, window.innerWidth / 4);
 }
 
 function keyPressed() {
