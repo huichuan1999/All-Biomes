@@ -26,6 +26,8 @@ class DNA {
                 this.physics.addSpring(crossSpring2);
                 this.springs.push(springA, springB, crossSpring, crossSpring2);
             }
+            let repulsion = new AttractionBehavior(this.particles[i], 10, -0.7);
+            this.physics.addBehavior(repulsion);
         }
     }
 
@@ -53,7 +55,7 @@ let dnas = [];
 function createDNA() {
     for (let i = 0; i < 4; i++) {
         //在画布下方生成
-        dnas.push(new DNA(random(width / 6, width - width / 6), random(0, height / 4), random(3, 12), random(5,20),tailPhysics));
+        dnas.push(new DNA(random(width / 6, width - width / 6), random(0, height / 4), random(3, 12), random(10,20),tailPhysics));
     }
 }
 

@@ -24,9 +24,9 @@ function setup() {
 
   tailPhysics = new VerletPhysics2D();
   tailPhysics.setWorldBounds(new Rect(0, 0, width, height));
-  // let gb = new GravityBehavior(new Vec2D(0, -0.05));// add gravity to tails
-  // tailPhysics.addBehavior(gb);
-  tailPhysics.setDrag(0.1);
+  let gb = new GravityBehavior(new Vec2D(0, 0.05));// add gravity to tails
+  tailPhysics.addBehavior(gb);
+  tailPhysics.setDrag(0.001);
 
   attraction = new AttractionBehavior(new Vec2D(0, 0), 500, 0.5, 0.2);//整体的环境吸引力
   physics.addBehavior(attraction);
@@ -34,6 +34,7 @@ function setup() {
   colorMode(HSB, 255);
 
   createStars();
+  createParticleNetrwork();
   createTreeCell();
   createDNA();
 
@@ -54,6 +55,7 @@ function draw() {
   pinchInteraction();
 
   drawStars();
+  drawParticleNetwork();
   drawTreeCell();
   drawDNA();
 
@@ -118,15 +120,15 @@ function pinchInteraction() {
       for (let dna of dnas) {
         for (let i = 0; i < 2; i++) {
             let d = dist(midpoint.x, midpoint.y, dna.particles[i].x, dna.particles[i].y);
-
+            //一头的两个
             if (d < 20) {
-                dna.particles[i].set(width / 2, height / 2);
-            }
+              dna.particles[i].set(random(midpoint.x-100,midpoint.x+100), random(midpoint.y-100,midpoint.y+100));
+          }
         } //只探测最开始的粒子
 
         for (let i = dna.particles.length - 2; i < dna.particles.length; i++) {
             let d = dist(midpoint.x, midpoint.y, dna.particles[i].x, dna.particles[i].y);
-
+            //另一头的两个
             if (d < 20) {
                 dna.particles[i].set(random(midpoint.x-100,midpoint.x+100), random(midpoint.y-100,midpoint.y+100));
             }
