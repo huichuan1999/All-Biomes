@@ -117,7 +117,7 @@ class Star {
 
 let stars = [];
 let angStars = [];
-let numStars = 3;
+let numStars = 4;
 
 function createStars() {
   for (let i = 0; i < numStars; i++) {
