@@ -116,10 +116,10 @@ class Star {
 }
 
 let stars = [];
-let angStars = [];
-let numStars = 3;
 
 function createStars() {
+  let angStars = [];
+  let numStars = 3;
   for (let i = 0; i < numStars; i++) {
     let centerX = random(width / 6, width - width / 6);
     let centerY = random(height / 6, height - height / 6);

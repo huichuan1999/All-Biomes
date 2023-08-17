@@ -1,7 +1,7 @@
 let physics;
 let tailPhysics;
 
-let particleGrabRadius = 30;
+//let particleGrabRadius = 30;
 
 let handParticles = [];
 let handAttractions = [];
@@ -136,6 +136,11 @@ function pinchInteraction() {
             }
         }
       }
+      let d = calculateDistance(midpoint,butterfly.centerParticle);
+      if(d < 120){
+        butterfly.centerParticle.set(midpoint.x, midpoint.y);
+      }
+      
       //捏合交互
       // for (let star of stars) {
       //   //for (let point of star.points) { 
