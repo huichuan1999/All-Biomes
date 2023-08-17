@@ -31,9 +31,9 @@ class Star {
 
         // Create a ParticleString for each inner point//加上尾巴
         const stepDirection = new toxi.geom.Vec2D(0, 1).normalizeTo(20);
-        let numParticles = random(4, 15);
-        let strength = 1;
-        let damping = 0.1;
+        let numParticles = random(4, 10);
+        let strength = 0.01;
+        let damping = 0;
         let particleString = new ParticleString(tailPhysics, innerPoint, stepDirection, numParticles, strength, damping);
         this.particleStrings.push(particleString);
 
@@ -117,7 +117,7 @@ class Star {
 
 let stars = [];
 let angStars = [];
-let numStars = 4;
+let numStars = 3;
 
 function createStars() {
   for (let i = 0; i < numStars; i++) {

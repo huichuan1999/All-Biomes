@@ -39,7 +39,7 @@ function setup() {
   createParticleNetrwork();
   createTreeCell();
   createDNA();
-
+  createButterfly();
 }
 
 function draw() {
@@ -60,7 +60,7 @@ function draw() {
   drawParticleNetwork();
   drawTreeCell();
   drawDNA();
-
+  drawButterfly();
 }
 
 function handDetected() {
