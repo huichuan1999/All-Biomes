@@ -82,13 +82,4 @@ function drawParticleNetwork(){
   for(let particleNetwork of particleNetworks){
     particleNetwork.display();
   }
-
-  // Allow mouse to control the first particle
-  // if (mouseIsPressed) {
-  //   particleNetwork.particles[0].lock();
-  //   particleNetwork.particles[0].set(mouseX, mouseY);
-  // } else {
-  //   particleNetwork.particles[0].unlock();
-  // }
-
 }
