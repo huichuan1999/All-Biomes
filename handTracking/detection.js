@@ -5,8 +5,11 @@ function gotHands(results) {
   detections = results;
 }
 
+// const hands = new Hands({locateFile: (file) => {
+//   return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+// }});
 const hands = new Hands({locateFile: (file) => {
-  return `https://cdn.jsdelivr.net/npm/@mediapipe/hands/${file}`;
+  return `./libraries/mediapipe-hands/${file}`;
 }});
 hands.setOptions({
   maxNumHands: 1, // the max number of hands
