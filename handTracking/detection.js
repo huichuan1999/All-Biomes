@@ -12,7 +12,8 @@ hands.setOptions({
   maxNumHands: 1, // the max number of hands
   modelComplexity: 1, //maybe change to 0
   minDetectionConfidence: 0.5,
-  minTrackingConfidence: 0.5
+  minTrackingConfidence: 0.5,
+  delegate: "GPU"
 });
 hands.onResults(gotHands);
 
