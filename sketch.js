@@ -12,7 +12,7 @@ let draggedParticle = null;
 let attraction;
 
 function setup() {
-  let canvasWidth = Math.min(windowWidth, 2400);//动态设置画布宽度
+  let canvasWidth = Math.min(windowWidth, 1600);//动态设置画布宽度
   let canvasHeight = canvasWidth / 4; // 对应的高度
   canvas = createCanvas(canvasWidth, canvasHeight);
   //canvas = createCanvas(2400,600);
@@ -137,7 +137,7 @@ function pinchInteraction() {
         }
       }
       let d = calculateDistance(midpoint,butterfly.centerParticle);
-      if(d < 120){
+      if(d < 300){
         butterfly.centerParticle.set(midpoint.x, midpoint.y);
       }
       

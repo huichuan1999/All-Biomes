@@ -15,7 +15,7 @@ hands.setOptions({
   runningMode: "VIDEO",
   delegate: "GPU",
   maxNumHands: 1, // the max number of hands
-  modelComplexity: 0, //maybe change to 0
+  modelComplexity: 1, //maybe change to 0
   minDetectionConfidence: 0.5,
   minTrackingConfidence: 0.5
 });
@@ -26,8 +26,8 @@ const camera = new Camera(videoElement, {
   onFrame: async () => {
     await hands.send({image: videoElement});
   },
-  width: 2400,
-  height: 2400/4
+  width: 360,
+  height: 360/4
   // width: window.innerWidth,
   // height: window.innerHeight
 });
