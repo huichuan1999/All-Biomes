@@ -12,8 +12,8 @@ let draggedParticle = null;
 let attraction;
 
 function setup() {
-  let canvasWidth = Math.min(windowWidth, 1600);//动态设置画布宽度
-  let canvasHeight = canvasWidth / 4; // 对应的高度
+  let canvasWidth = Math.min(windowWidth, 1400);//动态设置画布宽度
+  let canvasHeight = canvasWidth / 3.8; // 对应的高度
   canvas = createCanvas(canvasWidth, canvasHeight);
   //canvas = createCanvas(2400,600);
   canvas.id("canvas");
@@ -204,10 +204,6 @@ function drawHand() {
 
     }
   }
-}
-
-function windowResized() {
-  resizeCanvas(window.innerWidth, window.innerWidth / 4);
 }
 
 function keyPressed() {
