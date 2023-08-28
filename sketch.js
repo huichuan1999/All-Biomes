@@ -50,7 +50,6 @@ function draw() {
   physics.update();
   tailPhysics.update();
 
-
   drawHand();
 
   handDetected();

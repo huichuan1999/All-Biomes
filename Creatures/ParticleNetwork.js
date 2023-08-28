@@ -46,12 +46,14 @@ class ParticleNetwork {
       // for (const particle of this.particles) {
       //   ellipse(particle.x, particle.y, 5, 5);
       // }
+
+      let fluctuatingRadius = 12 + 8 * sin(frameCount/10);
   
       for (const spring of this.springs) {
         //line(spring.a.x, spring.a.y, spring.b.x, spring.b.y);
         if (spring.b !== this.particles[this.particles.indexOf(spring.a) + 1]) {
           fill(255,50);
-          ellipse(spring.b.x, spring.b.y, 10, 10);
+          ellipse(spring.b.x, spring.b.y, fluctuatingRadius);
         }
       }
     }
