@@ -1,5 +1,6 @@
 html, body {
   background-color: #000;
+  /* background-color: white; */
   margin: 0;  
   padding: 0;
   justify-content: center;
@@ -28,7 +29,7 @@ html, body {
 }
 
 .overlay{
-  background-color: rgba(0,0,0,0.7);
+  background-color: rgba(0,0,0,1);
   /* background-color: #000; */
   position:absolute;
   top:0;

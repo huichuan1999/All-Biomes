@@ -46,7 +46,7 @@ function draw() {
   clear();
   stroke(255);
   noFill();
-  rect(0, 0, width, height);
+  // rect(0, 0, width, height);
   physics.update();
   tailPhysics.update();
 
