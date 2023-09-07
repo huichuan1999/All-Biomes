@@ -1,7 +1,7 @@
 let physics;
 let tailPhysics;
 
-//let particleGrabRadius = 30;
+let particleGrabRadius = 30;
 
 let handParticles = [];
 let handAttractions = [];
@@ -34,6 +34,7 @@ function setup() {
   physics.addBehavior(attraction);
 
   colorMode(HSB, 255);
+  frameRate(60);
 
   createStars();
   createParticleNetrwork();
@@ -136,25 +137,25 @@ function pinchInteraction() {
         }
       }
       let d = calculateDistance(midpoint,butterfly.centerParticle);
-      if(d < 300){
+      if(d < 100){
         butterfly.centerParticle.set(midpoint.x, midpoint.y);
       }
       
       //捏合交互
-      // for (let star of stars) {
-      //   //for (let point of star.points) { 
-      //     let d = dist(midpoint.x, midpoint.y, star.centerPoint.x, star.centerPoint.y);
-      //     if (d < particleGrabRadius) {
-      //       // star.centerPoint.lock();
-      //       // star.centerPoint.x = midpoint.x;
-      //       // star.centerPoint.y = midpoint.y;
-      //       // star.centerPoint.unlock();
-      //       draggedParticle = star.centerPoint;
-      //       draggedParticle.set(midpoint.x, midpoint.y,);
-      //       //break;
-      //     }
-      //   //}
-      // }
+      for (let star of stars) {
+        //for (let point of star.points) { 
+          let d = dist(midpoint.x, midpoint.y, star.centerPoint.x, star.centerPoint.y);
+          if (d < particleGrabRadius) {
+            // star.centerPoint.lock();
+            // star.centerPoint.x = midpoint.x;
+            // star.centerPoint.y = midpoint.y;
+            // star.centerPoint.unlock();
+            draggedParticle = star.centerPoint;
+            draggedParticle.set(midpoint.x, midpoint.y,);
+            //break;
+          }
+        //}
+      }
     }
     else {
       draggedParticle = null;

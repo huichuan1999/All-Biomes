@@ -93,7 +93,7 @@ class Star {
 
     // Draw springs
     strokeWeight(1);
-    stroke(180, 50); // Set the color to gray
+    stroke(255, 30); // Set the color to gray
     for (let i = 0; i < physics.springs.length; i++) {
       let spring = physics.springs[i];
       line(spring.a.x, spring.a.y, spring.b.x, spring.b.y);
@@ -119,7 +119,7 @@ let stars = [];
 
 function createStars() {
   let angStars = [];
-  let numStars = 3;
+  let numStars = 4;
   for (let i = 0; i < numStars; i++) {
     let centerX = random(width / 6, width - width / 6);
     let centerY = random(height / 6, height - height / 6);
