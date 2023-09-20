@@ -30,12 +30,12 @@ class Star {
         physics.addParticle(this.points[this.points.length - 1]);
 
         // Create a ParticleString for each inner point//加上尾巴
-        const stepDirection = new toxi.geom.Vec2D(0, 1).normalizeTo(20);
-        let numParticles = random(4, 10);
+        const stepDirection = new toxi.geom.Vec2D(0, 1).normalizeTo(15);
+        let numParticles = random(4, 20);
         let strength = 0.01;
         let damping = 0;
         let particleString = new ParticleString(tailPhysics, innerPoint, stepDirection, numParticles, strength, damping);
-        this.particleStrings.push(particleString);
+        this.particleStrings.push(particleString); 
 
         // Add a spring connecting inner point and center point
         let innerSpring = new VerletSpring2D(innerPoint, this.centerPoint, this.centerPoint.distanceTo(innerPoint), 0.01);
@@ -119,13 +119,13 @@ let stars = [];
 
 function createStars() {
   let angStars = [];
-  let numStars = 4;
+  let numStars = 6;
   for (let i = 0; i < numStars; i++) {
     let centerX = random(width / 6, width - width / 6);
     let centerY = random(height / 6, height - height / 6);
     angStars.push(floor(random(3, 8)));
-    let innerRadius = random(10, 20);
-    let outerRadius = innerRadius + random(10, 30);
+    let innerRadius = random(10, 20)*1.5;
+    let outerRadius = innerRadius + random(10, 30)*1.5;
     let star = new Star(centerX, centerY, angStars[i], innerRadius, outerRadius);
     stars.push(star);
   }

@@ -9,7 +9,10 @@ class ParticleNetwork {
         const particle = new VerletParticle2D(startPosition.add(stepDirection.scale(i)));
         this.physics.addParticle(particle);
         this.particles.push(particle);
-        this.particles[i].lock();
+        if(i % 2 ==0){
+          this.particles[i].lock();
+        }
+        
   
         if (i > 0) {
           const prevParticle = this.particles[i - 1];
@@ -24,7 +27,7 @@ class ParticleNetwork {
           const branchParticle = new VerletParticle2D(particle.add(branchDirection));
           this.physics.addParticle(branchParticle);
           //在这里改变分叉的大小
-          const branchSpring = new VerletSpring2D(particle, branchParticle, random(5,branchDirection.magnitude()/3), strength);
+          const branchSpring = new VerletSpring2D(particle, branchParticle, random(5,branchDirection.magnitude()/2), strength);
           //const branchSpring = new VerletSpring2D(particle, branchParticle, branchDirection.magnitude()/2, strength);
           branchSpring.damping = damping;
           this.physics.addSpring(branchSpring);
@@ -68,8 +71,8 @@ function createParticleNetrwork(){
   const spacing = width/num;
 
   for(let i = 0; i < num; i++){
-    const startPosition = new Vec2D(spacing * i + spacing / 2,0);
-    const stepDirection = new Vec2D(1, 0).normalizeTo(16);
+    const startPosition = new Vec2D(spacing * i,0);
+    const stepDirection = new Vec2D(1, 0).normalizeTo(23);
     const numParticles = 12;
     const strength = 0.01;
     const damping = 0;
