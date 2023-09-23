@@ -116,7 +116,7 @@ class Butterfly {
 
   let butterfly;
    function createButterfly(){
-      butterfly = new Butterfly(tailPhysics,width/2,height/2,40);
+      butterfly = new Butterfly(tailPhysics,width/2,height/2,50);
    }
 
    function drawButterfly(){

@@ -14,7 +14,7 @@ const hands = new Hands({locateFile: (file) => {
 hands.setOptions({
   runningMode: "VIDEO",
   delegate: "GPU",
-  maxNumHands: 2, // the max number of hands
+  maxNumHands: 1, // the max number of hands
   modelComplexity: 1, //maybe change to 0
   minDetectionConfidence: 0.5,
   minTrackingConfidence: 0.5

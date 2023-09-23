@@ -91,6 +91,13 @@ function handDetected() {
     } else {
       handAttractions[i].attractor.set(handParticles[i].getPosition());
     }
+    //适用于physics 的交互
+    if (physics.behaviors.length < physics.particles.length + 19) {
+      handAttractions[i].attractor.set(handParticles[i].getPosition());
+      physics.addBehavior(handAttractions[i]);
+    } else {
+      handAttractions[i].attractor.set(handParticles[i].getPosition());
+    }
   }
 
   //console.log(tailPhysics.particles.length,tailPhysics.behaviors, tailPhysics);
@@ -137,7 +144,7 @@ function pinchInteraction() {
         }
       }
       let d = calculateDistance(midpoint,butterfly.centerParticle);
-      if(d < 100){
+      if(d < 200){
         butterfly.centerParticle.set(midpoint.x, midpoint.y);
       }
       
