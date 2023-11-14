@@ -21,7 +21,7 @@ function setup() {
   physics = new VerletPhysics2D();
   physics.setWorldBounds(new Rect(0, 0, width, height));
   physics.setDrag(0.001);
-  let gb0 =  new GravityBehavior(new Vec2D(0, -0.01));
+  let gb0 =  new GravityBehavior(new Vec2D(0, -0.001));
   physics.addBehavior(gb0);
 
   tailPhysics = new VerletPhysics2D();
