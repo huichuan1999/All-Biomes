@@ -119,13 +119,13 @@ let stars = [];
 
 function createStars() {
   let angStars = [];
-  let numStars = 6;
+  let numStars = 7;
   for (let i = 0; i < numStars; i++) {
     let centerX = random(width / 6, width - width / 6);
     let centerY = random(height / 6, height - height / 6);
     angStars.push(floor(random(3, 8)));
-    let innerRadius = random(10, 20)*1.5;
-    let outerRadius = innerRadius + random(10, 30)*1.5;
+    let innerRadius = random(7, 15)*1.5;
+    let outerRadius = innerRadius + random(10, 30);
     let star = new Star(centerX, centerY, angStars[i], innerRadius, outerRadius);
     stars.push(star);
   }

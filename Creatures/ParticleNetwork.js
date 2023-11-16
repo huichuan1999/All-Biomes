@@ -27,7 +27,7 @@ class ParticleNetwork {
           const branchParticle = new VerletParticle2D(particle.add(branchDirection));
           this.physics.addParticle(branchParticle);
           //在这里改变分叉的大小
-          const branchSpring = new VerletSpring2D(particle, branchParticle, random(5,branchDirection.magnitude()/2), strength);
+          const branchSpring = new VerletSpring2D(particle, branchParticle, random(5,branchDirection.magnitude()/5), strength);
           //const branchSpring = new VerletSpring2D(particle, branchParticle, branchDirection.magnitude()/2, strength);
           branchSpring.damping = damping;
           this.physics.addSpring(branchSpring);
