@@ -12,9 +12,10 @@ let draggedParticle = null;
 let attraction;
 
 function setup() {
-  let canvasWidth = 590*2;//动态设置画布宽度
-  let canvasHeight = 290*2; // 对应的高度
+  let canvasWidth = 1920/2;//动态设置画布宽度
+  let canvasHeight = 1080/2; // 对应的高度
   canvas = createCanvas(canvasWidth, canvasHeight);
+  rect(0,0,width,height);
   //canvas = createCanvas(2400,600);
   canvas.id("canvas");
 
