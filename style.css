@@ -14,7 +14,7 @@ html, body {
   display:block;
   /* transform-origin:top left;
   transform:scale(1.7); */
-  transform: rotateY(180deg) translateY(-50%) scaleX(2) scaleY(3.04);
+  transform: rotateY(180deg) translateY(-50%) scaleX(2) scaleY(2.78);
 
   top: 50%;  /* Moves it half its own height upwards */
   left:25%;

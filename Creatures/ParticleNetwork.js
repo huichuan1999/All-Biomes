@@ -72,7 +72,7 @@ function createParticleNetrwork(){
 
   for(let i = 0; i < num; i++){
     const startPosition = new Vec2D(spacing * i,0);
-    const stepDirection = new Vec2D(1, 0).normalizeTo(23);
+    const stepDirection = new Vec2D(1, 0).normalizeTo(26);
     const numParticles = 12;
     const strength = 0.01;
     const damping = 0;
