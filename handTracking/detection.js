@@ -27,7 +27,7 @@ const camera = new Camera(videoElement, {
     await hands.send({image: videoElement});
   },
   width: 1920,
-  height: 708
+  height: 1920/(2.5/1)
   // width: window.innerWidth,
   // height: window.innerHeight
 });

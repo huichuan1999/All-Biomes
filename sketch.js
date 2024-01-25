@@ -12,7 +12,7 @@ let draggedParticle = null;
 let attraction;
 
 function setup() {
-  let ratio = 4.2/1.7;
+  let ratio = 2.5/1;
   let canvasWidth = 1920; //动态设置画布宽度
   let canvasHeight = canvasWidth/ratio;
   console.log(canvasHeight);
